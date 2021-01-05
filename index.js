@@ -1,7 +1,12 @@
 const Discord = require("discord.js");
-const config = require("./config.json");
 const ytdl = require('ytdl-core');
 
+const aws = require('aws-sdk');
+
+const config = new aws.S3({
+ 
+    BOT_TOKEN: process.env.BOT_TOKEN
+});
 const client = new Discord.Client();
 
 const prefix = "!";
