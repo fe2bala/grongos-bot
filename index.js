@@ -1,12 +1,12 @@
 const Discord = require("discord.js");
 const ytdl = require('ytdl-core');
 
-const aws = require('aws-sdk');
 
-const config = new aws.S3({
+
+
  
-    BOT_TOKEN: process.env.BOT_TOKEN
-});
+const BOT_TOKEN = process.env.BOT_TOKEN;
+
 const client = new Discord.Client();
 
 const prefix = "!";
@@ -40,7 +40,7 @@ client.on('message',async message => {
 
 
 
-client.login(config.BOT_TOKEN);
+client.login(BOT_TOKEN);
 
 
 
