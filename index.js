@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const ytdl = require('ytdl-core');
-const commands = require('./commands')
+const { play } = require('./commands')
  
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const client = new Discord.Client();
@@ -30,7 +30,7 @@ client.on('message',async message => {
         message.reply(`The sum of all the arguments you provided is ${sum}!`);
     }
     if (command === 'grongos') {
-        await commands.play.firework(message);
+        await play.firework(message);
     }
 });
 

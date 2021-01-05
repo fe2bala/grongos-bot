@@ -1,3 +1,5 @@
+const ytdl = require('ytdl-core');
+
 module.exports = {
     async firework(message) {
         if (message.member.voice.channel) {
