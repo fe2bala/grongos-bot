@@ -36,6 +36,9 @@ client.on('message',async message => {
     if (command === 'grongos') {
         await playFirework(message);
     }
+    if (command === 'kawaii') {
+        await playKawaii(message);
+    }
 });
 
 
@@ -52,6 +55,20 @@ async function playFirework(message) {
         });
         dispatcher.on('finish', () => {
             console.log('Finished playing firework!');
+        });
+
+    } else {
+        message.reply('Você precisa estar em um canal de voz primeiro');
+    }
+}
+async function playKawaii(message) {
+    if (message.member.voice.channel) {
+        const connection = await message.member.voice.channel.join();
+        const dispatcher = connection.play(ytdl("https://youtu.be/4a2rTl31ArE?t=4"), {
+            volume: 2,
+        });
+        dispatcher.on('finish', () => {
+            console.log('Finished playing Kawaii!');
         });
 
     } else {
