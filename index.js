@@ -6,7 +6,7 @@ const ytdl = require('ytdl-core');
 
  
 const BOT_TOKEN = process.env.BOT_TOKEN;
-
+console.log(BOT_TOKEN);
 const client = new Discord.Client();
 
 const prefix = "!";
