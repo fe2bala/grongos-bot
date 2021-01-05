@@ -1,12 +1,8 @@
 const Discord = require("discord.js");
 const ytdl = require('ytdl-core');
 
-
-
-
  
 const BOT_TOKEN = process.env.BOT_TOKEN;
-console.log(BOT_TOKEN);
 const client = new Discord.Client();
 
 const prefix = "!";
@@ -67,6 +63,7 @@ async function playKawaii(message) {
         const dispatcher = connection.play(ytdl("https://youtu.be/4a2rTl31ArE?t=4"), {
             volume: 2,
         });
+        
         dispatcher.on('finish', () => {
             console.log('Finished playing Kawaii!');
         });
