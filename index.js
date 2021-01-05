@@ -61,7 +61,7 @@ async function playKawaii(message) {
     if (message.member.voice.channel) {
         const connection = await message.member.voice.channel.join();
         const dispatcher = connection.play(ytdl("https://www.youtube.com/watch?v=4a2rTl31ArE"), {
-            volume: 2,
+            volume: 1,
         });
 
         dispatcher.on('finish', () => {
