@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const ytdl = require('ytdl-core');
-
+const commands = require('./commands')
  
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const client = new Discord.Client();
@@ -30,10 +30,7 @@ client.on('message',async message => {
         message.reply(`The sum of all the arguments you provided is ${sum}!`);
     }
     if (command === 'grongos') {
-        await playFirework(message);
-    }
-    if (command === 'kawaii') {
-        await playKawaii(message);
+        await commands.play.firework(message);
     }
 });
 
@@ -43,33 +40,5 @@ client.login(BOT_TOKEN);
 
 
 
-async function playFirework(message) {
-    if (message.member.voice.channel) {
-        const connection = await message.member.voice.channel.join();
-        const dispatcher = connection.play(ytdl("https://www.youtube.com/watch?v=eXhPThYwwTQ"), {
-            volume: 1,
-        });
-        dispatcher.on('finish', () => {
-            console.log('Finished playing firework!');
-        });
 
-    } else {
-        message.reply('Você precisa estar em um canal de voz primeiro');
-    }
-}
-async function playKawaii(message) {
-    if (message.member.voice.channel) {
-        const connection = await message.member.voice.channel.join();
-        const dispatcher = connection.play(ytdl("https://www.youtube.com/watch?v=4a2rTl31ArE"), {
-            volume: 1,
-        });
-
-        dispatcher.on('finish', () => {
-            console.log('Finished playing Kawaii!');
-        });
-
-    } else {
-        message.reply('Você precisa estar em um canal de voz primeiro');
-    }
-}
 
