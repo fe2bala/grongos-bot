@@ -1,7 +1,8 @@
 const Discord = require("discord.js");
 const { play } = require('./commands')
- 
+
 const BOT_TOKEN = process.env.BOT_TOKEN;
+
 const client = new Discord.Client();
 
 const prefix = "!";

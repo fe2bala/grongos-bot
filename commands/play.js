@@ -9,6 +9,7 @@ module.exports = {
             });
             dispatcher.on('finish', () => {
                 console.log('Finished playing firework!');
+                connection.disconnect();
             });
     
         } else {
