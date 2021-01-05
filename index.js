@@ -60,10 +60,10 @@ async function playFirework(message) {
 async function playKawaii(message) {
     if (message.member.voice.channel) {
         const connection = await message.member.voice.channel.join();
-        const dispatcher = connection.play(ytdl("https://youtu.be/4a2rTl31ArE?t=4"), {
+        const dispatcher = connection.play(ytdl("https://www.youtube.com/watch?t=4&v=4a2rTl31ArE"), {
             volume: 2,
         });
-        
+
         dispatcher.on('finish', () => {
             console.log('Finished playing Kawaii!');
         });
