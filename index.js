@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const ytdl = require('ytdl-core');
 const { play } = require('./commands')
  
 const BOT_TOKEN = process.env.BOT_TOKEN;
