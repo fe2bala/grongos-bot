@@ -62,7 +62,7 @@ async function execute(message, videoUrl) {
     queue.set(message.guild.id, queueContruct);
 
     queueContruct.song = song;
-    const connection = await message.member.voice.channel.join();
+    const connection = await voiceChannel.join();
     queueContruct.connection = connection;
     
     playVideo(connection, song);

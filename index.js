@@ -39,6 +39,9 @@ client.on('message',async message => {
         case 'musicaruim':
             await play.whatMusic(message);
             return;
+        case 'yodao':
+            await play.whatMusic(message);
+            return;
         case 'stop':
             await play.stop(message);
             return;
