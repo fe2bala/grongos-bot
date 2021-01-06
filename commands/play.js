@@ -66,7 +66,7 @@ async function execute(message, videoUrl) {
         
         queueContruct.connection = connection;
     } else {
-
+        serverQueue.connection = connection;
         serverQueue.song = song;
     }
     playVideo(connection, song);
