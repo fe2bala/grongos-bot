@@ -35,8 +35,13 @@ client.on('message',async message => {
             return;
         case 'tiltado':
             await play.tilted(message);
+            return;
         case 'musicaruim':
             await play.whatMusic(message);
+            return;
+        case 'yodao':
+            await play.whereIsYoda(message);
+            return;
         default:
             return;
     }
