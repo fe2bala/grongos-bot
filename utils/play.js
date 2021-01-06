@@ -44,15 +44,7 @@ module.exports = {
         }
         playVideo(connection, song);
     },
-    playVideo(connection, song) {
-        const dispatcher = connection.play(ytdl(song.url), {
-            volume: 0.6,
-        });
-        dispatcher.on('finish', () => {
-            console.log(`Finished playing ${song.title}!`);
-            connection.disconnect();
-        });
-    },
+    
     async stop(message) {
         const serverQueue = queue.get(message.guild.id);
         if (!message.member.voice.channel)
@@ -68,4 +60,13 @@ module.exports = {
         }
     
     }
+}
+function playVideo(connection, song) {
+    const dispatcher = connection.play(ytdl(song.url), {
+        volume: 0.6,
+    });
+    dispatcher.on('finish', () => {
+        console.log(`Finished playing ${song.title}!`);
+        connection.disconnect();
+    });
 }
