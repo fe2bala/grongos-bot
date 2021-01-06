@@ -64,8 +64,10 @@ async function execute(message, videoUrl) {
         queueContruct.song = song;
         const connection = await voiceChannel.join();
         queueContruct.connection = connection;
+    } else {
+
+        serverQueue.song = song;
     }
-    serverQueue.song = song;
     playVideo(connection, song);
 }
 
