@@ -32,7 +32,7 @@ async function playVideo(message, videoUrl, title) {
             volume: 0.6,
         });
         dispatcher.on('finish', () => {
-            console.log(`Finished playing ${title??"video"}!`);
+            console.log(`Finished playing ${title ? title : "video"}!`);
             connection.disconnect();
         });
 
