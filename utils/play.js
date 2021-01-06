@@ -1,4 +1,5 @@
-const { ytdl,getInfo } = require('ytdl-core');
+const { getInfo } = require('ytdl-core');
+const ytdl = require('ytdl-core');
 
 const queue = new Map();
 module.exports = {
