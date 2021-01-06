@@ -49,22 +49,23 @@ async function execute(message, videoUrl) {
         };
 
     const serverQueue = queue.get(message.guild.id);
+    if (!serverQueue) {
+        const queueContruct = {
+            textChannel: message.channel,
+            voiceChannel: voiceChannel,
+            connection: null,
+            songs: null,
+            volume: 5,
+            playing: true
+            };
+        
+        queue.set(message.guild.id, queueContruct);
 
-    const queueContruct = {
-        textChannel: message.channel,
-        voiceChannel: voiceChannel,
-        connection: null,
-        songs: null,
-        volume: 5,
-        playing: true
-        };
-    
-    queue.set(message.guild.id, queueContruct);
-
-    queueContruct.song = song;
-    const connection = await voiceChannel.join();
-    queueContruct.connection = connection;
-    
+        queueContruct.song = song;
+        const connection = await voiceChannel.join();
+        queueContruct.connection = connection;
+    }
+    serverQueue.song = song;
     playVideo(connection, song);
 }
 
