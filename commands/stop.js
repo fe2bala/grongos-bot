@@ -6,7 +6,7 @@ module.exports = class Firework extends Command {
   constructor () {
     super()
 
-    this.name = 'tiltado',
+    this.name = 'stop',
     this.description = 'é o grongos porra!'
   }
 
