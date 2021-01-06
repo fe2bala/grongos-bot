@@ -38,7 +38,22 @@ module.exports = {
                 volume: 0.5,
             });
             dispatcher.on('finish', () => {
-                console.log('Finished playing firework!');
+                console.log('Finished playing que porra de musica é essa!');
+                connection.disconnect();
+            });
+    
+        } else {
+            message.reply('Você precisa estar em um canal de voz primeiro');
+        }
+    },
+    async whereIsYoda(message) {
+        if (message.member.voice.channel) {
+            const connection = await message.member.voice.channel.join();
+            const dispatcher = connection.play(ytdl("https://www.youtube.com/watch?v=KV0tr0hhxe0"), {
+                volume: 0.5,
+            });
+            dispatcher.on('finish', () => {
+                console.log('Finished playing Yodao!');
                 connection.disconnect();
             });
     
