@@ -6,25 +6,21 @@ module.exports = {
     async firework(message) {
         const serverQueue = queue.get(message.guild.id);
         const videoUrl = "https://www.youtube.com/watch?v=eXhPThYwwTQ";
-        const title = "firework";
 
         await execute(message, videoUrl);
     },
     async tilted(message) {
 
         const videoUrl = "https://www.youtube.com/watch?v=YaJ_a2-zG9M";
-        const title = "i'm Tilted";
         await execute(message, videoUrl);
     },
     async whatMusic(message) {
         const videoUrl = "https://www.youtube.com/watch?v=vrHsh3lrv4o";
-        const title = "What is This music playing";
 
         await execute(message, videoUrl);
     },
     async whereIsYoda(message) {
         const videoUrl = "https://www.youtube.com/watch?v=KV0tr0hhxe0";
-        const title = "Yodao";
         await execute(message, videoUrl);
     },
     async stop(message){
@@ -33,7 +29,7 @@ module.exports = {
     }
     
 }
-async function execute(message, videoUrl, title) {
+async function execute(message, videoUrl) {
     
     const voiceChannel = message.member.voice.channel;
     if (!voiceChannel)
@@ -45,8 +41,15 @@ async function execute(message, videoUrl, title) {
         return message.channel.send(
             "I need the permissions to join and speak in your voice channel!"
             );
-        }
+    }
+    const songInfo = await ytdl.getInfo(videoUrl);
+    const song = {
+            title: songInfo.videoDetails.title,
+            url: songInfo.videoDetails.video_url,
+        };
+
     const serverQueue = queue.get(message.guild.id);
+
     const queueContruct = {
         textChannel: message.channel,
         voiceChannel: voiceChannel,
@@ -62,15 +65,15 @@ async function execute(message, videoUrl, title) {
     const connection = await message.member.voice.channel.join();
     queueContruct.connection = connection;
     
-    playVideo(connection, videoUrl, title);
+    playVideo(connection, song);
 }
 
-function playVideo(connection, videoUrl, title) {
-    const dispatcher = connection.play(ytdl(videoUrl), {
+function playVideo(connection, song) {
+    const dispatcher = connection.play(ytdl(song.url), {
         volume: 0.6,
     });
     dispatcher.on('finish', () => {
-        console.log(`Finished playing ${title ? title : "video"}!`);
+        console.log(`Finished playing ${song.title}!`);
         connection.disconnect();
     });
 }
