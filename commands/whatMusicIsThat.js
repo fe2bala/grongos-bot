@@ -11,7 +11,7 @@ module.exports = class whatMusicIsThat extends Command {
   }
 
   async run ({ message, client }) {
-    const videoUrl = "https://www.youtube.com/watch?v=vrHsh3lrv4o";
+    const videoUrl = "https://www.youtube.com/watch?v=gXsOMpElafk";
     await execute(message, videoUrl);
   }
 }
