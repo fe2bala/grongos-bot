@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const Command = require("../infra/Command");
 const { execute } = require("../utils/play");
 
-module.exports = class Firework extends Command {
+module.exports = class whatMusicIsThat extends Command {
   constructor () {
     super()
 
