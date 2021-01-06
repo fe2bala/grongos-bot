@@ -11,7 +11,6 @@ module.exports = class Firework extends Command {
   }
 
   async run ({ message, client }) {
-    const serverQueue = queue.get(message.guild.id);
     const videoUrl = "https://www.youtube.com/watch?v=eXhPThYwwTQ";
     await execute(message, videoUrl);
   }
