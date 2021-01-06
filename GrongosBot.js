@@ -1,7 +1,7 @@
-import { Client } from "discord.js"
-import { glob } from "glob"
-import MessageParser from "./MessageParser"
-export default class GrongosBot extends Client {
+const Discord = require("discord.js")
+const { glob } = require("glob")
+const MessageParser = require("./MessageParser")
+module.exports = class GrongosBot extends Discord.Client {
   constructor () {
     super()
 

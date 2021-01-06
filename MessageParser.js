@@ -1,6 +1,6 @@
-import { Message } from "discord.js"
+const { Message } = "discord.js"
 
-export default class MessageParser {
+module.exports = class MessageParser {
   /**
    * Parses a message
    * @param {Message} message 

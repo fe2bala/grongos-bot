@@ -1,8 +1,8 @@
-import { MessageEmbed } from "discord.js";
-import Command from "../structures/Command";
-import stop from "../utils/play";
+const { MessageEmbed } = require("discord.js");
+const Command = require("../infra/Command");
+const { stop } = require("../utils/play");
 
-export default class Firework extends Command {
+module.exports = class Firework extends Command {
   constructor () {
     super()
 
