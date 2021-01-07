@@ -11,7 +11,7 @@ module.exports = class Fart extends Command {
   }
 
   async run ({ message, client }) {
-    const videoUrl = "https://www.youtube.com/watch?v=IDlV0egm5GM";
+    const videoUrl = "https://www.youtube.com/watch?v=_gAV1eOp5hI";
     await execute(message, videoUrl);
   }
 }
