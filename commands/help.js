@@ -12,6 +12,6 @@ module.exports = class Help extends Command {
   async run ({ message, client }) {
     message.channel.send(new MessageEmbed()
     .setTitle(`Help`)
-    .setDescription(client.commands.reduce((s, command)=> s + "!" + command,"Comandos: ")))
+    .setDescription(client.commands.reduce((s, command)=> s + "!" + command.title + " ","Comandos: ")))
   }
 }
