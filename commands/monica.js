@@ -11,7 +11,7 @@ module.exports = class Monica extends Command {
   }
 
   async run ({ message, client }) {
-    const videoUrl = "https://www.youtube.com/watch?v=BMNDv2aZid0";
+    const videoUrl = "https://www.youtube.com/watch?v=YwbL2uE-bF0&ab_channel=BrotherhoodOfDollynhoChannel";
     await execute(message, videoUrl);
   }
 }

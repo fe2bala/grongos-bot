@@ -58,6 +58,7 @@ module.exports = {
         if (!serverQueue.connection) {
             serverQueue.songs = null;
             serverQueue.connection.dispatcher.end();
+            serverQueue.connection.disconnect()
         }
     
     }
