@@ -43,6 +43,9 @@ module.exports = {
             serverQueue.connection = connection;
             serverQueue.song = song;
         }
+        message.channel.send(new MessageEmbed()
+        .setTitle(`${song.title}`)
+        .setDescription(`é o grongos porra!`))
         playVideo(connection, song);
     },
     
@@ -71,7 +74,6 @@ function playVideo(connection, song) {
         console.log(`Finished playing ${song.title}!`);
         connection.disconnect();
     });
-    return message.channel.send(
-        `Playing ${song.title}`
-    );
+    
+    
 }
