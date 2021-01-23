@@ -1,5 +1,7 @@
 const { getInfo } = require('ytdl-core');
 const ytdl = require('ytdl-core');
+const { MessageEmbed } = require("discord.js");
+
 
 const queue = new Map();
 module.exports = {
