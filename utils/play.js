@@ -19,10 +19,6 @@ module.exports = {
             );
         }
         const songInfo = await getInfo(videoUrl);
-        const song = {
-            title: songInfo.videoDetails.title,
-            url: songInfo.videoDetails.video_url,
-        };
     
         const serverQueue = queue.get(message.guild.id);
         const connection = await voiceChannel.join();
@@ -31,24 +27,24 @@ module.exports = {
                 textChannel: message.channel,
                 voiceChannel: voiceChannel,
                 connection: null,
-                songs: null,
+                song: null,
                 volume: 5,
                 playing: true
             };
     
             queue.set(message.guild.id, queueContruct);
     
-            queueContruct.song = song;
+            queueContruct.song = songInfo;
     
             queueContruct.connection = connection;
         } else {
             serverQueue.connection = connection;
-            serverQueue.song = song;
+            serverQueue.song = songInfo;
         }
         message.channel.send(new MessageEmbed()
-        .setTitle(`${song.title}`)
+        .setTitle(`${songInfo.videoDetails.title}`)
         .setDescription(`é o grongos porra!`))
-        playVideo(connection, song);
+        playVideo(connection, songInfo);
     },
     
     async stop(message) {
@@ -61,19 +57,20 @@ module.exports = {
         if (!serverQueue)
             return message.channel.send("There is no song that I could stop!");
         if (!serverQueue.connection) {
-            serverQueue.songs = null;
+            serverQueue.song = null;
             serverQueue.connection.dispatcher.end();
             serverQueue.connection.disconnect()
         }
     
     }
 }
-function playVideo(connection, song) {
-    const dispatcher = connection.play(ytdl(song.url), {
+function playVideo(connection, songInfo) {
+    const stream = ytdl.downloadFromInfo(songInfo, {filter: 'audioonly'})
+    const dispatcher = connection.play(stream, {
         volume: 0.6,
     });
     dispatcher.on('finish', () => {
-        console.log(`Finished playing ${song.title}!`);
+        console.log(`Finished playing ${songInfo.videoDetails.title}!`);
         connection.disconnect();
     });
     
