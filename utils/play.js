@@ -1,5 +1,5 @@
-const { getInfo } = require('ytdl-core');
-const ytdl = require('ytdl-core');
+const { getInfo } = require('ytdl-core-discord');
+const ytdl = require('ytdl-core-discord');
 const { MessageEmbed } = require("discord.js");
 
 
@@ -19,6 +19,10 @@ module.exports = {
             );
         }
         const songInfo = await getInfo(videoUrl);
+        const song = {
+            title: songInfo.videoDetails.title,
+            url: songInfo.videoDetails.video_url,
+        };
     
         const serverQueue = queue.get(message.guild.id);
         const connection = await voiceChannel.join();
@@ -27,24 +31,24 @@ module.exports = {
                 textChannel: message.channel,
                 voiceChannel: voiceChannel,
                 connection: null,
-                song: null,
+                songs: null,
                 volume: 5,
                 playing: true
             };
     
             queue.set(message.guild.id, queueContruct);
     
-            queueContruct.song = songInfo;
+            queueContruct.song = song;
     
             queueContruct.connection = connection;
         } else {
             serverQueue.connection = connection;
-            serverQueue.song = songInfo;
+            serverQueue.song = song;
         }
         message.channel.send(new MessageEmbed()
-        .setTitle(`${songInfo.videoDetails.title}`)
+        .setTitle(`${song.title}`)
         .setDescription(`é o grongos porra!`))
-        playVideo(connection, songInfo);
+        playVideo(connection, song);
     },
     
     async stop(message) {
@@ -57,20 +61,20 @@ module.exports = {
         if (!serverQueue)
             return message.channel.send("There is no song that I could stop!");
         if (!serverQueue.connection) {
-            serverQueue.song = null;
+            serverQueue.songs = null;
             serverQueue.connection.dispatcher.end();
             serverQueue.connection.disconnect()
         }
     
     }
 }
-function playVideo(connection, songInfo) {
-    const stream = ytdl.downloadFromInfo(songInfo, {filter: 'audioonly'})
-    const dispatcher = connection.play(stream, {
+async function playVideo(connection, song) {
+    const dispatcher = connection.play(await ytdl(song.url), {
+        type: 'opus' ,
         volume: 0.6,
     });
     dispatcher.on('finish', () => {
-        console.log(`Finished playing ${songInfo.videoDetails.title}!`);
+        console.log(`Finished playing ${song.title}!`);
         connection.disconnect();
     });
     
