@@ -71,4 +71,7 @@ function playVideo(connection, song) {
         console.log(`Finished playing ${song.title}!`);
         connection.disconnect();
     });
+    return message.channel.send(
+        `Playing ${song.title}`
+    );
 }
