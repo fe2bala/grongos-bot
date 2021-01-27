@@ -31,7 +31,7 @@ module.exports = {
                 textChannel: message.channel,
                 voiceChannel: voiceChannel,
                 connection: null,
-                songs: null,
+                song: null,
                 volume: 5,
                 playing: true
             };
@@ -61,7 +61,7 @@ module.exports = {
         if (!serverQueue)
             return message.channel.send("There is no song that I could stop!");
         if (!serverQueue.connection) {
-            serverQueue.songs = null;
+            serverQueue.song = null;
             serverQueue.connection.dispatcher.end();
             serverQueue.connection.disconnect()
         }
