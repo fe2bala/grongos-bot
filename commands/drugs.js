@@ -2,16 +2,16 @@ const { MessageEmbed } = require("discord.js");
 const Command = require("../infra/Command");
 const { execute } = require("../utils/play");
 
-module.exports = class whatMusicIsThat extends Command {
+module.exports = class Drugs extends Command {
   constructor () {
     super()
 
-    this.name = 'porramusica',
+    this.name = 'droga',
     this.description = 'é o grongos porra!'
   }
 
   async run ({ message, client }) {
-    const videoUrl = "https://www.youtube.com/watch?v=vrHsh3lrv4o";
+    const videoUrl = "https://www.youtube.com/watch?v=ReLba6jMWKQ";
     await execute(message, videoUrl);
   }
 }

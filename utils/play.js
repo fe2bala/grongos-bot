@@ -1,5 +1,7 @@
-const { getInfo } = require('ytdl-core');
-const ytdl = require('ytdl-core');
+const { getInfo } = require('ytdl-core-discord');
+const ytdl = require('ytdl-core-discord');
+const { MessageEmbed } = require("discord.js");
+
 
 const queue = new Map();
 module.exports = {
@@ -29,7 +31,7 @@ module.exports = {
                 textChannel: message.channel,
                 voiceChannel: voiceChannel,
                 connection: null,
-                songs: null,
+                song: null,
                 volume: 5,
                 playing: true
             };
@@ -43,6 +45,9 @@ module.exports = {
             serverQueue.connection = connection;
             serverQueue.song = song;
         }
+        message.channel.send(new MessageEmbed()
+        .setTitle(`${song.title}`)
+        .setDescription(`é o grongos porra!`))
         playVideo(connection, song);
     },
     
@@ -56,18 +61,22 @@ module.exports = {
         if (!serverQueue)
             return message.channel.send("There is no song that I could stop!");
         if (!serverQueue.connection) {
-            serverQueue.songs = null;
+            serverQueue.song = null;
             serverQueue.connection.dispatcher.end();
+            serverQueue.connection.disconnect()
         }
     
     }
 }
-function playVideo(connection, song) {
-    const dispatcher = connection.play(ytdl(song.url), {
+async function playVideo(connection, song) {
+    const dispatcher = connection.play(await ytdl(song.url), {
+        type: 'opus' ,
         volume: 0.6,
     });
     dispatcher.on('finish', () => {
         console.log(`Finished playing ${song.title}!`);
         connection.disconnect();
     });
+    
+    
 }
